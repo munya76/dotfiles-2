@@ -39,6 +39,3 @@ key[PageDown]=${terminfo[knp]}
 
 alias themes="sudo thunar /usr/share/themes/"
 alias icons="sudo thunar /usr/share/icons/"
-alias prog="cd ~/Programming/C++/ && ls"
-alias project="/home/nicolai/Bin/progscript.sh"
-
