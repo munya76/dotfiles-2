@@ -1,0 +1,221 @@
+# Set modifier key to Windows-key
+set $mod Mod4
+
+# Set keyboard layout and screen configuration
+exec setxkbmap dk
+exec --no-startup-id /home/nicolai/Bin/arandr.sh
+exec --no-startup-id i3-msg restart
+
+# Run startup applications 
+exec setxkbmap dk
+exec --no-startup-id volumeicon
+exec --no-startup-id xfce4-notifyd
+exec --no-startup-id xfce4-volumed
+exec --no-startup-id numlockx
+exec --no-startup-id redshift-gtk
+exec --no-startup-id compton -b -f --backend glx --vsync opengl-swc --glx-no-stencil --paint-on-overlay --config ~/.config/compton.conf
+exec --no-startup-id dropboxd
+exec --no-startup-id nitrogen --restore
+#bindsym XF86AudioRaiseVolume exec amixer -q set Master 3dB+ unmute
+#bindsym XF86AudioLowerVolume exec amixer -q set Master 3dB- unmute
+#bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym AudioLowerVolume exec amixer -q set Master 2dB- unmute && killall -USR1 i3blocks
+bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym AudioRaiseVolume exec amixer -q set Master 2dB+ unmute && killall -USR1 i3blocks
+
+# Application shortcuts
+bindsym $mod+w exec firefox
+bindsym $mod+f exec thunar
+
+# Window arguments
+for_window [class="Nitrogen"] floating enable
+for_window [class="ARandR"] floating enable
+for_window [class="lxappearance"] floating enable
+for_window [title="xfce4-volumed"] floating enable
+for_window [title="xfce4-notifyd"] floating enable
+for_window [title="Steam*"] floating enable
+for_window [title="Synergy"] floating enable
+for_window [title="xfce4-volumed"] border pixel 0
+for_window [title="xfce4-notifyd"] border pixel 0
+for_window [class="File-roller"] floating enable
+for_window [class="Battle.net.exe"] floating enable
+for_window [class="Skype"] floating enable
+for_window [class="gsimplecal"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+assign [class="Wow-64.exe"] 3|
+assign [class="Skype"] 6|
+assign [class="Hexchat"] 6|
+assign [title="Battle.net"] 6|
+assign [class="firefox"] 5|
+assign [title="Steam"] 8|
+
+# Set font
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:Liberation Mono 10
+
+# Floating window modifier key
+floating_modifier $mod
+
+# Start a terminal
+bindsym $mod+t exec xfce4-terminal
+
+# Kill focused window
+bindsym $mod+c kill
+
+# Dmenu
+bindsym $mod+r exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -b -f -q -r -i -name 'Dmenu' -dim 0.5 -l 20 -p 'Execute' -fn 'Liberation Sans-10' -y 600 -w 200 -nb '#131D24' -nf '#999999' -sb '#131D24' -sf '#93AE03'"
+
+# Screenshots
+bindsym --release Print exec scrot /home/nicolai/Pictures/screenshot-$(date +%Y-%m-%d).png
+bindsym --release Shift+Print exec scrot -s /home/nicolai/Pictures/screenshot-$(date +%Y-%m-%d).png
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left focus left
+bindsym $mod+Shift+Down focus down
+bindsym $mod+Shift+Up focus up
+bindsym $mod+Shift+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left move left
+bindsym $mod+Down move down
+bindsym $mod+Up move up
+bindsym $mod+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+Shift+F fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Shift+s layout stacking
+bindsym $mod+Shift+w layout tabbed
+bindsym $mod+Shift+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+a floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+Shift+a focus parent
+
+# focus the child container
+bindsym $mod+Shift+d focus child
+
+# Workspace-monitor config
+workspace 1| output DP-1
+workspace 2| output DP-1
+workspace 3| output DP-1
+workspace 4| output DVI-I-1
+workspace 5| output DVI-I-1
+workspace 6| output DVI-I-1
+workspace 7| output DP-1
+workspace 8| output DP-1
+workspace 9| output DVI-I-1
+workspace 0| output DVI-I-1
+
+# switch to workspace
+bindsym $mod+1 workspace 1|
+bindsym $mod+2 workspace 2|
+bindsym $mod+3 workspace 3|
+bindsym $mod+4 workspace 4|
+bindsym $mod+5 workspace 5|
+bindsym $mod+6 workspace 6|
+bindsym $mod+7 workspace 7|
+bindsym $mod+8 workspace 8|
+bindsym $mod+9 workspace 9|
+bindsym $mod+0 workspace 0|
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1|
+bindsym $mod+Shift+2 move container to workspace 2|
+bindsym $mod+Shift+3 move container to workspace 3|
+bindsym $mod+Shift+4 move container to workspace 4|
+bindsym $mod+Shift+5 move container to workspace 5|
+bindsym $mod+Shift+6 move container to workspace 6|
+bindsym $mod+Shift+7 move container to workspace 7|
+bindsym $mod+Shift+8 move container to workspace 8|
+bindsym $mod+Shift+9 move container to workspace 9|
+bindsym $mod+Shift+0 move container to workspace 0|
+
+# move workspace to next output
+# will toggle with two outputs
+bindsym $mod+d move window to output right
+
+# focus on click
+focus_follows_mouse no
+
+# tab between recent workspaces
+bindsym $mod+Tab workspace back_and_forth
+
+# gaps
+gaps inner 10
+bindsym $mod+z gaps inner current plus 5
+bindsym $mod+Shift+z gaps inner current minus 5
+bindsym $mod+x gaps outer current plus 10
+bindsym $mod+Shift+x gaps outer current minus 10
+bindsym $mod+b gaps inner current set 0
+bindsym $mod+n gaps inner all set 0
+
+# Border settings
+hide_edge_borders none
+new_window pixel 3
+smart_borders on
+smart_borders no_gaps
+
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Quit session' 'i3-msg exit' -b 'Reboot' 'reboot' -b 'Shutdown' 'poweroff'"
+
+#bindsym $mod+r mode "resize"
+
+# Panel settings
+bar {
+    height 20
+	tray_output primary
+	position bottom
+	font pango:Convergence FontAwesome, Icons 9
+	status_command i3blocks
+	colors {
+
+#	setting			outline	bg	text
+
+        statusline		#999999
+        background		#131D24
+
+        focused_workspace	#232D34	#232D34	#93AE03
+        active_workspace	#232D34	#232D34	#999999
+        inactive_workspace	#131D24	#131D24	#999999
+        urgent_workspace	#999999	#999999	#B33A3A
+
+
+	}
+}
+
+
+client.focused				#9fbc00 #9fbc00 #111111
+client.unfocused			#505E00 #505E00 #cccccc
+client.focused_inactive			#315858 #315858 #cccccc
+client.urgent				#383a3b #383a3b #cccccc
+
+exec --no-startup-id xrdb -load ~/.Xresources
+exec --no-startup-id xfconf-query -c xsettings -p /Xft/Antialias -n -t int -s 1
+exec --no-startup-id xfconf-query -c xsettings -p /Xft/Lcdfilter -n -t string -s lcddefault
+
+
