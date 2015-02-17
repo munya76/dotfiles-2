@@ -25,7 +25,7 @@ sudo echo "exclude=kernel* *nvidia" >> /etc/yum.conf
 
 echo "Installerer depedencies"
 sleep 5
-sudo dnf -y install p7zip zip unzip i3 xfce4-notifyd xfce4-volumed numlockx redshift nitrogen lxappearance file-roller scrot libXinerama-devel libXft-devel ruby ruby-ronn ruby-devel rubygem-ronn xcb-util-keysyms-devel pango-devel xcb-util-devel xcb-util-cursor-devel xcb-util-renderutil-devel xcb-util-wm-devel yajl-devel startup-notification-devel pcre-devel libev-devel cmake clang gcc-c++ xdotool xfce4-terminal xprop asciidoc libXcomposite-devel libXrandr-devel libconfig-devel dbus-devel lm_sensors firefox hexchat thunar thunar-archive-plugin thunar-volman vim zsh gtk-murrine-engine
+sudo dnf -y install icedtea-web p7zip zip unzip i3 xfce4-notifyd xfce4-volumed numlockx redshift nitrogen lxappearance file-roller scrot libXinerama-devel libXft-devel ruby ruby-ronn ruby-devel rubygem-ronn xcb-util-keysyms-devel pango-devel xcb-util-devel xcb-util-cursor-devel xcb-util-renderutil-devel xcb-util-wm-devel yajl-devel startup-notification-devel pcre-devel libev-devel cmake clang gcc-c++ xdotool xfce4-terminal xprop asciidoc libXcomposite-devel libXrandr-devel libconfig-devel dbus-devel lm_sensors firefox hexchat thunar thunar-archive-plugin thunar-volman vim zsh gtk-murrine-engine
 sudo gem install --no-ri --no-rdoc wombat
 
 echo "Installer i3gaps og accesories"
