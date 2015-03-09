@@ -1,0 +1,9 @@
+#!/bin/bash
+
+strength=$(iwconfig wlp3s0 | awk '/Tx-Power/ { print $4 " " $5 }' | sed -r 's/^.{9}//')
+
+if [ "$strength" = " " ];
+	then exit 1;
+else
+	echo "($strength)"
+fi

@@ -1,0 +1,13 @@
+#!/bin/bash
+while :; do
+essid=$(iwconfig wlp3s0 | awk '/ESSID/ { print $4 }' | tr -d "\"\"" | sed -r 's/^.{6}//')
+	
+if [ $(iwconfig wlp3s0 | awk '/ESSID/ { print $4 }' | tr -d 'ESSID:' | tr -d "\"\"") = "off/any" ];
+	then printf '{"full_text":"No internet", "border":"#bc1d00"}\n';
+else
+	printf '{"full_text":"%s"}\n' "$essid"
+	#iwconfig wlp3s0 | awk '/ESSID/ { print $4 }' | tr -d "\"\"" | sed -r 's/^.{6}//'
+	#iwconfig wlp3s0 | awk '/ESSID/ { print $4 }' | tr -d 'ESSID:' | tr -d "\"\""
+fi;
+sleep 1;
+done

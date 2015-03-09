@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xbacklight -get | awk '{printf "%.0f", $1}'
+echo "%"

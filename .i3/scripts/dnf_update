@@ -1,0 +1,8 @@
+#!/bin/bash
+updates=$(dnf check-update | awk -F, 'END{print NR -1}') 
+
+if [ "$updates" -lt "3" ];
+	then echo "Up to date";
+else
+	echo "$updates"
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+while :; do
+essid=$(iwconfig wlp3s0 | awk '/ESSID/ { print $4 }' | tr -d "\"\"" | sed -r 's/^.{6}//')
+
+if [ "$essid" = "off/any" ];
+	then color="#bc1d00"
+else
+	color="#1d99bc"
+fi
+
+printf '{"full_text":"", "color":"%s", "border":"%s"}\n' "$color" "$color";
+sleep 1;
+done

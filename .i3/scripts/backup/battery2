@@ -1,0 +1,19 @@
+#!/bin/bash
+
+batVal=$(acpi | awk '/Battery/ { print $4 }' | tr -d ',' )
+batStatus=$(acpi | awk '/Battery/ { print $3 }' | tr -d ',')
+batTime=$(acpi | awk '/Battery/ { print $5 }' )
+
+if [ "$batStatus" = "Charging" ];
+    #then echo "#FF0000";
+    then echo ""
+elif [ "$batStatus" = "Discharging" ];
+    #then echo "#FF0000";
+    then echo ""
+
+elif [ "$batStatus" = "Full" ];
+    #then echo "#FF0000";
+    then echo ""
+fi
+
+

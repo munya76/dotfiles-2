@@ -1,0 +1,25 @@
+#!/bin/bash
+
+abc=$(xbacklight)
+backlight=${abc/.*}
+
+if [ "$backlight" -le 14 ];
+then echo "10%"
+elif [ "$backlight" -le 24 ]
+then echo "20%"
+elif [ "$backlight" -le 34 ]
+then echo "30%"
+elif [ "$backlight" -le 44 ]
+then echo "40%"
+elif [ "$backlight" -le 54 ]
+then echo "50%"
+elif [ "$backlight" -le 64 ]
+then echo "60%"
+elif [ "$backlight" -le 74 ]
+then echo "70%"
+elif [ "$backlight" -le 84 ]
+then echo "80%"
+elif [ "$backlight" -le 94 ]
+then echo "90%"
+else echo "100%"
+fi

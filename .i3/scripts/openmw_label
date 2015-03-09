@@ -1,0 +1,15 @@
+#!/bin/bash
+sleep 2
+
+openmw=$(cat /tmp/mw.txt | awk '{ print $1 " " $2 " "w $3 }')
+versionNumeric=$(cat /tmp/mw.txt | awk '{ print $3 }' | tr -d '(%)')
+
+if [ "$openmw" = "" ];
+then printf '{"full_text":"", "color":"#bc1d00", "border":"#bc1d00"}\n'
+
+elif [ "$versionNumeric" -ge "90" ]
+then printf '{"full_text":"", "color":"#00bc0d", "border":"#00bc0d"}\n'
+
+else
+	printf '{"full_text":""}\n'
+fi;

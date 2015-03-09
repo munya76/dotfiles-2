@@ -1,0 +1,6 @@
+#!/bin/bash
+
+batTime=$(acpi | awk '/Battery/ { print "("$5")" }' ) # Tid tilbage, bruges dog ikke i script (separa    t block)
+batVal=$(acpi | awk '/Battery/ { print $4 }' | tr -d ',') # Battery percentage
+
+echo $batVal $batTime

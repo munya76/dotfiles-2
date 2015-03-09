@@ -1,0 +1,29 @@
+#!/bin/bash
+
+while :; do
+batVal=$(acpi | awk '/Battery/ { print $4 }' | tr -d ',' | tr -d '%' )
+batStatus=$(acpi | awk '/Battery/ { print $3 }' | tr -d ',')
+batTime=$(acpi | awk '/Battery/ { print $5 }' )
+
+if [ "$batVal" -le "100" -a "$batVal" -gt "70" ];
+	then batColor="#00bc0d";
+elif [ "$batVal" -lt "30" ];
+	then batColor="#bc1d00";
+else batColor="#1d99bc";
+fi
+
+if [ "$batStatus" = "Charging" ];
+	then printf '{"full_text":"", "color":"%s", "border":"%s"}\n' "$batColor" "$batColor"
+	
+#elif [ "$batStatus" = "Discharging" -a "$batVal" -le "40"];
+#	then printf '{"full_text":"", "color":"#bc1d00", "border":"#bc1d00"}\n';
+
+elif [ "$batStatus" = "Discharging" ];
+	then printf '{"full_text":"", "color":"%s", "border":"%s"}\n' "$batColor" "$batColor"
+
+elif [ "$batStatus" = "Full" -o "$batStatus" = "Unknown" ];
+	then printf '{"full_text":""},"color":"%s", "border":"%s"}\n' "$batColor" "$batColor"
+
+fi;
+sleep 1;
+done
