@@ -1,6 +1,5 @@
 #!/bin/bash
-updates=$(dnf check-update | awk -F, 'END{print NR -1}') 
-
+updates=$(dnf check-update | egrep '(.i386|.x86_64|.noarch|.src)' | wc -l)
 if [ "$updates" -lt "3" ];
 	then echo "Up to date";
 else
